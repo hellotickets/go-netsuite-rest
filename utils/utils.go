@@ -80,7 +80,7 @@ func AddURLValuesToRequest(params url.Values, req *http.Request, skipEmpty bool)
 	// force $ in query parameters
 	req.URL.RawQuery = strings.Replace(req.URL.RawQuery, "%24", "$", -1)
 	req.URL.RawQuery = strings.Replace(req.URL.RawQuery, "%40", "@", -1)
-	// req.URL.RawQuery = strings.Replace(req.URL.RawQuery, "+", "%20", -1)
+	req.URL.RawQuery = strings.Replace(req.URL.RawQuery, "+", "%20", -1) // HT-9891: the line was commented out in the library
 	return nil
 }
 

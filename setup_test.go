@@ -6,7 +6,7 @@ import (
 	"os"
 	"testing"
 
-	netsuite "github.com/omniboost/go-netsuite-rest"
+	netsuite "github.com/hellotickets/go-netsuite-rest"
 	"golang.org/x/oauth2"
 )
 
