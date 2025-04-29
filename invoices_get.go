@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/omniboost/go-netsuite-rest/utils"
+	"github.com/hellotickets/go-netsuite-rest/utils"
 )
 
 func (c *Client) NewInvoicesGetRequest() InvoicesGetRequest {
