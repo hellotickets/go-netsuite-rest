@@ -103,10 +103,15 @@ func (g *SignatureGenerator) Generate() (string, error) {
 	// 	requestParameters[i] = url.QueryEscape(v)
 	// }
 
+	// HT-9891: requestParameters.Encode() used in the library, but does not encode + to %20,
+	// and that's mandatory to make the query parameters work, so we need to do it manually
+	requestParametersEncoded := requestParameters.Encode()
+	requestParametersEncoded = strings.Replace(requestParametersEncoded, "+", "%20", -1)
+
 	dataPieces := []string{
-		g.HTTPRequestMethod,        // http-request-method
-		baseURL.String(),           // base-string-uri
-		requestParameters.Encode(), // normalized-request-parameters
+		g.HTTPRequestMethod,      // http-request-method
+		baseURL.String(),         // base-string-uri
+		requestParametersEncoded, // normalized-request-parameters
 	}
 
 	for i, v := range dataPieces {

@@ -498,7 +498,7 @@ type ErrorResponse struct {
 
 	Type         string       `json:"type"`
 	Title        interface{}  `json:"title"`
-	Status       int          `json:"status"`
+	Status       interface{}  `json:"status"` // HT-9891: library's type is int, but the API object
 	ErrorDetails ErrorDetails `json:"o:errorDetails"`
 }
 

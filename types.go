@@ -267,25 +267,26 @@ type Invoice struct {
 	// 	ID      string `json:"id"`
 	// 	RefName string `json:"refName"`
 	// } `json:"status"`
-	Subsidiary          Subsidiary `json:"subsidiary"`
-	SubsidiaryTaxRegNum string     `json:"subsidiaryTaxRegNum,omitempty"`
-	Subtotal            float64    `json:"subtotal,omitempty"`
-	// TaxDetails           InvoiceTaxDetails `json:"taxDetails,omitempty"`
+	Subsidiary          Subsidiary        `json:"subsidiary"`
+	SubsidiaryTaxRegNum string            `json:"subsidiaryTaxRegNum,omitempty"`
+	Subtotal            float64           `json:"subtotal,omitempty"`
+	TaxDetails          InvoiceTaxDetails `json:"taxDetails,omitempty"` // HT-9891: this field was commented out
 	// TaxDetailsOverride   Bool    `json:"taxDetailsOverride"`
 	// TaxPointDate         Date    `json:"taxPointDate"`
 	// TaxPointDateOverride Bool    `json:"taxPointDateOverride"`
 	// TaxRegOverride       Bool    `json:"taxRegOverride"`
-	// TaxTotal             float64 `json:"taxTotal"`
+	TaxTotal float64 `json:"taxTotal,omitempty"` // HT-9891: this field was commented out
 	// ToBeEmailed          Bool    `json:"toBeEmailed"`
 	// ToBeFaxed            Bool    `json:"toBeFaxed"`
 	// ToBePrinted          Bool    `json:"toBePrinted"`
-	// Total                float64 `json:"total"`
+	Total float64 `json:"total,omitempty"` // HT-9891: this field was commented out
 	// TotalAfterTaxes      float64 `json:"totalAfterTaxes"`
 	// TotalCostEstimate    float64 `json:"totalCostEstimate"`
-	TranDate   Date      `json:"tranDate"`
-	TranID     string    `json:"tranId"`
-	Department RecordRef `json:"Department,omitempty"`
-	Class      RecordRef `json:"Class,omitempty"`
+	TranDate    Date      `json:"tranDate"`
+	TranID      string    `json:"tranId"`
+	Department  RecordRef `json:"Department,omitempty"`
+	Class       RecordRef `json:"Class,omitempty"`
+	OtherRefNum string    `json:"otherRefNum,omitempty"` // HT-9891: purchase ID
 }
 
 func (i Invoice) MarshalJSON() ([]byte, error) {
@@ -502,7 +503,7 @@ type InvoiceItemItem struct {
 	// 	RefName string `json:"refName"`
 	// } `json:"price"`
 	// PrintItems          Bool    `json:"printItems"`
-	// Quantity            float64 `json:"quantity"`
+	Quantity            float64 `json:"quantity,omitempty"` // HT-9891: library has this field commented out
 	TaxAmount           float64 `json:"taxAmount"`
 	TaxDetailsReference string  `json:"taxDetailsReference"`
 	// Units               string  `json:"units"`
