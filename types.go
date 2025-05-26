@@ -293,6 +293,33 @@ func (i Invoice) MarshalJSON() ([]byte, error) {
 	return omitempty.MarshalJSON(i)
 }
 
+type CreditMemo struct {
+	Links      Links      `json:"links"`
+	CustomForm CustomForm `json:"customForm"`
+	DueDate    Date       `json:"dueDate,omitempty"`
+	Entity     struct {
+		Links   Links  `json:"links,omitempty"`
+		ID      string `json:"id"`
+		RefName string `json:"refName,omitempty"`
+	} `json:"entity"`
+	ID                  string            `json:"id"`
+	Item                InvoiceItem       `json:"item"`
+	Memo                string            `json:"memo"`
+	Subsidiary          Subsidiary        `json:"subsidiary"`
+	SubsidiaryTaxRegNum string            `json:"subsidiaryTaxRegNum,omitempty"`
+	Subtotal            float64           `json:"subtotal,omitempty"`
+	TaxDetails          InvoiceTaxDetails `json:"taxDetails,omitempty"` // HT-9891: this field was commented out
+	TaxTotal            float64           `json:"taxTotal,omitempty"`
+	Total               float64           `json:"total,omitempty"`
+	TranDate            Date              `json:"tranDate"`
+	TranID              string            `json:"tranId"`
+	OtherRefNum         string            `json:"otherRefNum,omitempty"`
+}
+
+func (cm CreditMemo) MarshalJSON() ([]byte, error) {
+	return omitempty.MarshalJSON(cm)
+}
+
 type Customers []Customer
 
 type Customer struct {
