@@ -282,11 +282,16 @@ type Invoice struct {
 	Total float64 `json:"total,omitempty"` // HT-9891: this field was commented out
 	// TotalAfterTaxes      float64 `json:"totalAfterTaxes"`
 	// TotalCostEstimate    float64 `json:"totalCostEstimate"`
-	TranDate    Date      `json:"tranDate"`
-	TranID      string    `json:"tranId"`
-	Department  RecordRef `json:"Department,omitempty"`
-	Class       RecordRef `json:"Class,omitempty"`
-	OtherRefNum string    `json:"otherRefNum,omitempty"` // HT-9891: purchase ID
+	TranDate                  Date      `json:"tranDate"`
+	TranID                    string    `json:"tranId"`
+	Department                RecordRef `json:"Department,omitempty"`
+	Class                     RecordRef `json:"Class,omitempty"`
+	OtherRefNum               string    `json:"otherRefNum,omitempty"` // HT-9891: purchase ID
+	CustBodyNsHtTypeOfInvoice struct {
+		Links   Links  `json:"links"`
+		ID      string `json:"id"`
+		RefName string `json:"refName"`
+	} `json:"custbody_ns_ht_typeofinvoice,omitempty"`
 }
 
 func (i Invoice) MarshalJSON() ([]byte, error) {
@@ -302,18 +307,23 @@ type CreditMemo struct {
 		ID      string `json:"id"`
 		RefName string `json:"refName,omitempty"`
 	} `json:"entity"`
-	ID                  string            `json:"id"`
-	Item                InvoiceItem       `json:"item"`
-	Memo                string            `json:"memo"`
-	Subsidiary          Subsidiary        `json:"subsidiary"`
-	SubsidiaryTaxRegNum string            `json:"subsidiaryTaxRegNum,omitempty"`
-	Subtotal            float64           `json:"subtotal,omitempty"`
-	TaxDetails          InvoiceTaxDetails `json:"taxDetails,omitempty"` // HT-9891: this field was commented out
-	TaxTotal            float64           `json:"taxTotal,omitempty"`
-	Total               float64           `json:"total,omitempty"`
-	TranDate            Date              `json:"tranDate"`
-	TranID              string            `json:"tranId"`
-	OtherRefNum         string            `json:"otherRefNum,omitempty"`
+	ID                        string            `json:"id"`
+	Item                      InvoiceItem       `json:"item"`
+	Memo                      string            `json:"memo"`
+	Subsidiary                Subsidiary        `json:"subsidiary"`
+	SubsidiaryTaxRegNum       string            `json:"subsidiaryTaxRegNum,omitempty"`
+	Subtotal                  float64           `json:"subtotal,omitempty"`
+	TaxDetails                InvoiceTaxDetails `json:"taxDetails,omitempty"` // HT-9891: this field was commented out
+	TaxTotal                  float64           `json:"taxTotal,omitempty"`
+	Total                     float64           `json:"total,omitempty"`
+	TranDate                  Date              `json:"tranDate"`
+	TranID                    string            `json:"tranId"`
+	OtherRefNum               string            `json:"otherRefNum,omitempty"`
+	CustBodyNsHtTypeOfInvoice struct {
+		Links   Links  `json:"links"`
+		ID      string `json:"id"`
+		RefName string `json:"refName"`
+	} `json:"custbody_ns_ht_typeofinvoice,omitempty"`
 }
 
 func (cm CreditMemo) MarshalJSON() ([]byte, error) {
