@@ -461,25 +461,25 @@ type Customer struct {
 	ID string `json:"id,omitempty"`
 	// 	RefName string `json:"refName"`
 	// } `json:"shippingCarrier"`
-	Subsidiary Subsidiary `json:"subsidiary"`
-	// TaxRegistration struct {
-	// 	Links Links `json:"links"`
-	// 	Items []struct {
-	// 		Links Links `json:"links"`
-	// 		ID    int   `json:"id"`
-	// 		Nexus struct {
-	// 			Links   Links  `json:"links"`
-	// 			ID      string `json:"id"`
-	// 			RefName string `json:"refName"`
-	// 		} `json:"nexus"`
-	// 		NexusCountry struct {
-	// 			ID      string `json:"id"`
-	// 			RefName string `json:"refName"`
-	// 		} `json:"nexusCountry"`
-	// 		TaxRegistrationNumber string `json:"taxRegistrationNumber"`
-	// 	} `json:"items"`
-	// 	TotalResults int `json:"totalResults"`
-	// } `json:"taxRegistration"`
+	Subsidiary      Subsidiary `json:"subsidiary"`
+	TaxRegistration struct {
+		Links Links `json:"links"`
+		Items []struct {
+			Links Links `json:"links"`
+			ID    int   `json:"id"`
+			Nexus struct {
+				Links   Links  `json:"links"`
+				ID      string `json:"id"`
+				RefName string `json:"refName"`
+			} `json:"nexus"`
+			NexusCountry struct {
+				ID      string `json:"id"`
+				RefName string `json:"refName"`
+			} `json:"nexusCountry"`
+			TaxRegistrationNumber string `json:"taxRegistrationNumber"`
+		} `json:"items"`
+		TotalResults int `json:"totalResults"`
+	} `json:"taxRegistration"`
 	// UnbilledOrders float64 `json:"unbilledOrders"`
 	Email                  string `json:"email"`
 	Phone                  string `json:"phone"`
@@ -631,9 +631,14 @@ func (d Department) IsEmpty() bool {
 	return zero.IsZero(d)
 }
 
-type Addresses []Address
+type Addresses []AddressBookAddress
 
 type Address struct {
+	Links   Links              `json:"links"`
+	Address AddressBookAddress `json:"addressBookAddress"`
+}
+
+type AddressBookAddress struct {
 	Links                    Links  `json:"links"`
 	Addr1                    string `json:"addr1"`
 	Addrtext                 string `json:"addrtext"`
