@@ -496,7 +496,7 @@ type ErrorResponse struct {
 	// HTTP response that caused this error
 	Response *http.Response
 
-	Type         string       `json:"type"`
+	Type         interface{}  `json:"type"` // HT-14323: API may return string (URL) or object
 	Title        interface{}  `json:"title"`
 	Status       interface{}  `json:"status"` // HT-9891: library's type is int, but the API object
 	ErrorDetails ErrorDetails `json:"o:errorDetails"`

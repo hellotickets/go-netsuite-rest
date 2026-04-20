@@ -21,10 +21,10 @@ func TestInvoicePost(t *testing.T) {
 				},
 				Amount: 80000,
 				Item: netsuite.InvoiceItemItemItem{
-					ID: 131,
+					ID: json.Number("131"),
 				},
-				ItemSubType: "Resale",
-				ItemType:    "NonInvtPart",
+				ItemSubType: netsuite.RecordRef{ID: "Resale"},
+				ItemType:    netsuite.RecordRef{ID: "NonInvtPart"},
 			},
 		},
 	}
