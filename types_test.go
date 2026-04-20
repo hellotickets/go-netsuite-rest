@@ -64,7 +64,7 @@ func TestInvoice_UnmarshalFixture(t *testing.T) {
 				"amount": 1274.06,
 				"description": "Test item",
 				"item": {"id": "777", "refName": "EV-2120206"},
-				"itemSubType": {"id": "Sale", "refName": "Sale"},
+				"itemSubtype": {"id": "Sale", "refName": "Sale"},
 				"itemType": {"id": "Service", "refName": "Service"},
 				"quantity": 1.0,
 				"taxAmount": 0.0,
