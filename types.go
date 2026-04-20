@@ -1,6 +1,8 @@
 package netsuite
 
 import (
+	"encoding/json"
+
 	"github.com/cydev/zero"
 	"github.com/hellotickets/go-netsuite-rest/omitempty"
 )
@@ -465,8 +467,8 @@ type Customer struct {
 	TaxRegistration struct {
 		Links Links `json:"links"`
 		Items []struct {
-			Links Links `json:"links"`
-			ID    int   `json:"id"`
+			Links Links       `json:"links"`
+			ID    json.Number `json:"id"`
 			Nexus struct {
 				Links   Links  `json:"links"`
 				ID      string `json:"id"`
@@ -530,8 +532,8 @@ type InvoiceItemItem struct {
 	// 	} `json:"inventoryassignment"`
 	// } `json:"inventoryDetail"`
 	Item        InvoiceItemItemItem `json:"item"`
-	ItemSubType string              `json:"itemSubType"`
-	ItemType    string              `json:"itemType"`
+	ItemSubType RecordRef           `json:"itemSubType,omitempty"`
+	ItemType    RecordRef           `json:"itemType,omitempty"`
 	// Line        int                 `json:"line"`
 	// Marginal Bool `json:"marginal"`
 	// Price struct {
@@ -574,14 +576,14 @@ type InvoiceTaxDetails struct {
 
 type InvoiceItemItemItem struct {
 	// Links   Links  `json:"links"`
-	ID      int    `json:"id"`
-	RefName string `json:"refName"`
+	ID      json.Number `json:"id"`
+	RefName string      `json:"refName"`
 }
 
 type InvoiceLocation struct {
-	Links   Links  `json:"links"`
-	ID      int    `json:"id"`
-	RefName string `json:"refName"`
+	Links   Links       `json:"links"`
+	ID      json.Number `json:"id"`
+	RefName string      `json:"refName"`
 }
 
 type RecordRef struct {
